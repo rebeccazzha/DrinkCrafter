@@ -1,0 +1,60 @@
+{
+  "name": "drinkcrafter",
+  "version": "1.0.0",
+  "description": "\"DrinkToday\" is a web project for drink enthusiasts.",
+  "main": "index.js",
+  "env": {
+    "browser": "true",
+    "es6": "true",
+    "node": "true"
+  },
+  "extends": [
+    "eslint:recommended",
+    "prettier"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rebeccazzha/DrinkCrafter.git"
+  },
+  "author": "Yahui Zhang, Xiangyue Zhang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rebeccazzha/DrinkCrafter/issues"
+  },
+  "homepage": "https://github.com/rebeccazzha/DrinkCrafter#readme",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": "true"
+    }
+  },
+  "rules": {
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "quotes": [
+      "error",
+      "double"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "no-console": 0
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
