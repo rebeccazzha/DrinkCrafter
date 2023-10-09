@@ -1,0 +1,30 @@
+body {
+    padding-top: 60px;
+    background-image: url("bg5.png");
+}
+
+.col-sm-6 .col-md-4 .thumb-container{
+    display: flex;
+    flex-direction: row;
+    height: 900px;
+}
+
+.row {
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+.thumbnail {
+    margin-top: 30px;
+    width: 370px;
+    margin-bottom: 40px;
+}
+
+.des {
+    display: flex;
+    height: 60px;
+}
+
+.label {
+    color: black;
+}
