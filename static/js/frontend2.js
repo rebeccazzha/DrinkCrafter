@@ -1,5 +1,6 @@
 function FrontEnd2() {
   const me = {};
+
   const CATEGORIES = [
     { name: "rum", color: "#3b82f6" },
     { name: "whiskey", color: "#16a34a" },
@@ -19,32 +20,49 @@ function FrontEnd2() {
   factList.innerHTML = "";
 
   me.reloadFacts = async function () {
-    const res = await fetch("/api/funFacts");
+    const res = await fetch("/api2/funFacts");
     if (res.status !== 200) {
-      console.error("Error loading drinks");
+      console.error("Error loading facts");
       return;
     }
     const facts = await res.json();
-    createFactList(facts);
+    me.createFactList(facts);
   };
 
-  function createFactList(dataArray) {
-    const htmlArr = dataArray.map(
-      (fact) => `<li class="fact">
-            <p>
-            ${fact.text}
-              <a class="source" href="${
-                fact.source
-              }" target="_blank">(source)</a>
-            </p>
-            <span class="tag" style="background-color: ${
-              CATEGORIES.find((cat) => cat.name === fact.category).color
-            }">${fact.category}</span>
-            </li>`
-    );
-    const html = htmlArr.join("");
-    factList.insertAdjacentHTML("afterbegin", html);
-  }
+  // function createFactList(dataArray) {
+  //   const htmlArr = dataArray.map(
+  //     (fact) => `<li class="fact">
+  //           <p>
+  //           ${fact.text}
+  //             <a class="source" href="${
+  //               fact.source
+  //             }" target="_blank">(source)</a>
+  //           </p>
+  //           <span class="tag" style="background-color: ${
+  //             CATEGORIES.find((cat) => cat.name === fact.category).color
+  //           }">${fact.category}</span>
+  //           </li>`
+  //   );
+  //   const html = htmlArr.join("");
+  //   factList.insertAdjacentHTML("afterbegin", html);
+  // }
+
+  const renderFact = function (fact) {
+    return `
+    <li class="fact">
+       <p>
+       ${fact.text}
+         <a class="source" href="${fact.source}" target="_blank">(source)</a>
+      </p>
+       <span class="tag" style="background-color: ${
+         CATEGORIES.find((cat) => cat.name === fact.category).color
+       }">${fact.category}</span>
+      </li>`;
+  };
+
+  me.renderFacts = function (facts) {
+    factList.innerHTML = drinks.map(renderFact).join("\n");
+  };
 
   // Toggle form visibility
   toggleButton.addEventListener("click", function () {
@@ -60,6 +78,5 @@ function FrontEnd2() {
   return me;
 }
 
-const frontend = FrontEnd2();
-frontend.reloadDrinks();
-frontend.reloadFacts();
+const frontend2 = FrontEnd2();
+frontend2.reloadFacts();
