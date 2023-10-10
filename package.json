@@ -1,0 +1,17 @@
+{
+  "name": "drinkcrafter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "backend.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend.js"
+  },
+  "author": "Xiangyue Zhang, Yahui Zhang",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^6.1.0"
+  }
+}
