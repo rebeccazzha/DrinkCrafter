@@ -1,5 +1,6 @@
 body {
     padding-top: 70px;
+    background-color: black;
 }
 
 .thumbnail-image {
@@ -11,4 +12,11 @@ body {
 .thumb-container {
     margin-bottom: 20px;
     margin-top: 20px;
+}
+
+.my-dropdown-button {
+    width: 60%;
+    margin: 0 auto;
+    display: block;
+    background-color: aliceblues;
 }
