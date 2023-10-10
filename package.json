@@ -1,22 +1,17 @@
 {
   "name": "drinkcrafter",
   "version": "1.0.0",
-  "description": "\"DrinkCrafter\" is a web project for drink enthusiasts.",
-  "main": "index.js",
+  "description": "",
+  "main": "backend.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rebeccazzha/DrinkCrafter.git"
-  },
-  "author": "Yahui Zhang, Xiangyue Zhang",
+  "author": "Xiangyue Zhang",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/rebeccazzha/DrinkCrafter/issues"
-  },
-  "homepage": "https://github.com/rebeccazzha/DrinkCrafter#readme",
-  "devDependencies": {
-    "eslint": "^8.51.0"
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^6.1.0"
   }
 }
