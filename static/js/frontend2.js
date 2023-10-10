@@ -15,6 +15,7 @@ function FrontEnd2() {
   const toggleButton = document.querySelector(".btn-open");
   const factForm = document.querySelector(".fact-form");
   const factList = document.querySelector(".fact-list");
+  const categoryList = document.querySelector(".category");
 
   // Create DOM elements: Render facts in list
   factList.innerHTML = "";
@@ -26,26 +27,8 @@ function FrontEnd2() {
       return;
     }
     const facts = await res.json();
-    me.createFactList(facts);
+    me.renderFacts(facts);
   };
-
-  // function createFactList(dataArray) {
-  //   const htmlArr = dataArray.map(
-  //     (fact) => `<li class="fact">
-  //           <p>
-  //           ${fact.text}
-  //             <a class="source" href="${
-  //               fact.source
-  //             }" target="_blank">(source)</a>
-  //           </p>
-  //           <span class="tag" style="background-color: ${
-  //             CATEGORIES.find((cat) => cat.name === fact.category).color
-  //           }">${fact.category}</span>
-  //           </li>`
-  //   );
-  //   const html = htmlArr.join("");
-  //   factList.insertAdjacentHTML("afterbegin", html);
-  // }
 
   const renderFact = function (fact) {
     return `
@@ -61,19 +44,35 @@ function FrontEnd2() {
   };
 
   me.renderFacts = function (facts) {
-    factList.innerHTML = drinks.map(renderFact).join("\n");
+    factList.innerHTML = facts.map(renderFact).join("\n");
   };
 
-  // Toggle form visibility
-  toggleButton.addEventListener("click", function () {
-    if (factForm.classList.contains("hidden")) {
-      factForm.classList.remove("hidden");
-      toggleButton.textContent = "CLOSE";
-    } else {
-      factForm.classList.add("hidden");
-      toggleButton.textContent = "SHARE";
-    }
-  });
+  const categoryFilter = function CategoryFilter() {
+    return `
+    <aside>
+    <ul>
+      <li class="category">
+        <button class="btn btn-all">ALL</button>
+      </li>
+
+      {CATEGORIES.map((cat) => (
+        <li class="category">
+          <button
+            class="btn btn-category"
+            style={{ backgroundColor: ${cat.color}}
+          >
+            ${cat.name}
+          </button>
+        </li>
+      ))}
+    </ul>
+  </aside>
+    `;
+  };
+
+  // me.renderCategory = function (cats) {
+  //   categoryList.innerHTML = cats.map(categoryFilter).join("\n");
+  // };
 
   return me;
 }
