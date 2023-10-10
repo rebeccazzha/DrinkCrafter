@@ -1,13 +1,13 @@
-import express from 'express';
-import api from './static/js/api.js';
+import express from "express";
+import api from "./routes/api.js";
 
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
-app.use(express.static('static'));
+app.use(express.static("static"));
 
-app.use('/api', api);
+app.use("/api", api);
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
