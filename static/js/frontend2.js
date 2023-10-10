@@ -48,28 +48,29 @@ function FrontEnd2() {
   };
 
   const categoryFilter = function CategoryFilter() {
-    return `
-    <aside>
-    <ul>
+    const categoryButtons = CATEGORIES.map(
+      (cat) => `
       <li class="category">
-        <button class="btn btn-all">ALL</button>
+        <button class="btn btn-category" style="background-color: ${cat.color}">
+          ${cat.name}
+        </button>
       </li>
+    `
+    ).join("");
 
-      {CATEGORIES.map((cat) => (
-        <li class="category">
-          <button
-            class="btn btn-category"
-            style={{ backgroundColor: ${cat.color}}
-          >
-            ${cat.name}
-          </button>
-        </li>
-      ))}
-    </ul>
-  </aside>
+    return `
+      <aside>
+        <ul>
+          <li class="category">
+            <button class="btn btn-all">ALL</button>
+          </li>
+          ${categoryButtons}
+        </ul>
+      </aside>
     `;
   };
 
+  categoryList.innerHTML = categoryFilter();
   // me.renderCategory = function (cats) {
   //   categoryList.innerHTML = cats.map(categoryFilter).join("\n");
   // };
