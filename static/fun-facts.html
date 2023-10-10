@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fun Facts</title>
+    <link
+      rel="stylesheet"
+      href="./css/bootstrap-5.3.2-dist/css/bootstrap.css"
+    />
+    <link rel="stylesheet" href="./css/navbar.css" />
+    <!-- <link rel="stylesheet" href="./css/recipe.css"> -->
+    <!-- <link rel="stylesheet" href="./css/login.css" /> -->
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">DrinkCrafter</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="ms-auto">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Recipes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">FunFacts</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="/img/menu.png"
+                    alt="Menu icon"
+                    class="navbar-icon"
+                  />
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="#">Login</a></li>
+                  <li><a class="dropdown-item" href="#">Collection</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <section class="post">
+        <div class="logo">
+          <img src="logo.png" alt="logo" height="68" width="68" />
+          <h1>Post a fun fact!</h1>
+        </div>
+        <button class="btn btn-large btn-open">Share</button>
+      </section>
+  
+      <form class="fact-form hidden">
+        <input type="text" placeholder="Share a fact with the alcohol..." />
+        <span>200</span>
+        <input type="text" placeholder="Trustworthy source..." />
+        <select name="" id="">
+          <option value="">Choose category:</option>
+        </select>
+        <button class="btn btn-large">Post</button>
+      </form>
+  
+      <main class="main">
+        <aside>
+          <ul>
+            <li class="category"><button class="btn btn-all">ALL</button></li>
+          </ul>
+        </aside>
+  
+        <section>
+          <ul class="fact-list">
+            <li class="fact">
+              <p>
+                Rum dates back to the 1600s
+                <!-- target:open the source in a new page. -->
+                <a class="source" href="https://eat-drink-sleep.com/2022/11/08/10-things-you-probably-didnt-know-about-rum/" target="_blank">(source)</a>
+                
+              </p>
+              <span class="tag" style="background-color: #3b82f6""
+                  >RUM</span>
+              <div class="vote-buttons">
+                <button>👍 24</button>
+                <button>🤯 9</button>
+                <button>⛔️ 4</button>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </main>
+    </div>
+
+
+
+
+
+
+
+
+    <script src="./js/frontend.js"></script>
+    <script src="./css/bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
