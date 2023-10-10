@@ -16,13 +16,13 @@ function MyDB2() {
     return { client2, db2 };
   };
 
-  myDB2.getFacts = async ({ baseId } = {}) => {
+  myDB2.getFacts = async ({ factId } = {}) => {
     const { client2, db2 } = await connectToMongoDB();
     const factsCollection = db2.collection("funFacts");
 
     let query = {};
-    if (baseId && baseId != 0) {
-      query.base_id = parseInt(baseId, 10);
+    if (factId && factId != 0) {
+      query.factId = parseInt(factId, 10);
     }
 
     try {
