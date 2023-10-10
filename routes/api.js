@@ -13,4 +13,15 @@ router.get('/drinks', async (req, res) => {
   }
 });
 
+router.get('/details/:id', async (req, res) => {
+  try {
+    const _id = req.params.id;
+    const drinkDetails = await myDB.getDrinkById(_id);
+    res.json(drinkDetails);
+  } catch (error) {
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
 export default router;
