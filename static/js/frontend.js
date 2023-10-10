@@ -12,6 +12,7 @@ function FrontEnd() {
   };
 
   const renderDrink = function (drink) {
+    const detailPageLink = `/detail.html?id=${drink._id}`;
     return `
     <div class="col-sm-12 col-md-4 thumb-container">
         <div class="card h-100">
@@ -19,11 +20,12 @@ function FrontEnd() {
             <div class="card-body">
                 <h5 class="card-title">${drink.label}</h5>
                 <p class="card-text">Ingredients: ${drink.description}</p>
-                <a href="${drink.link}" class="btn btn-primary">explore</a>
+                <a href="${detailPageLink}" class="btn btn-primary">Explore</a>
             </div>
         </div>
     </div>`;
-  };
+};
+
 
   me.renderDrinks = function (drinks) {
     const drinksContainer = document.querySelector("#drinks-container");
