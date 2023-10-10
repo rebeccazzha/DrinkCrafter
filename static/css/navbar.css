@@ -1,0 +1,15 @@
+.navbar-icon {
+    height: 20px;
+    width: auto;
+    margin: auto;
+}
+
+.input-group {
+    width: 50%;
+}
+
+.mt-3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
