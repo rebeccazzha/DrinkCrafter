@@ -35,8 +35,8 @@ function MyDB2() {
   };
 
   myDB2.getFactsById = async (_id) => {
-    const { client, db } = await connect();
-    const drinksCollection = db.collection("funFacts");
+    const { client2, db2 } = await connect();
+    const factsCollection = db2.collection("funFacts");
 
     try {
       const result = await factsCollection.findOne({ _id: new ObjectId(_id) });
@@ -45,7 +45,7 @@ function MyDB2() {
       console.error(error);
     } finally {
       console.log("DB closing connection");
-      await client.close();
+      await client2.close();
     }
   };
 
