@@ -73,4 +73,43 @@ router.post("/voteFact", async (req, res) => {
   }
 });
 
+router.post("/addUser", async (req, res) => {
+  try {
+    const userName = req.body.userName;
+    const userPsw = req.body.userPsw;
+    const userCollection = req.body.userCollection || "";
+
+    const userToInsert = {
+      name: userName,
+      psw: userPsw,
+      collection: userCollection,
+    };
+
+    const result = await myDB2.insertUser(userToInsert);
+
+    res.json({ message: "Fact inserted successfully", result });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+router.post("/verifyUser", async (req, res) => {
+  try {
+    const userName = req.body.userName;
+    const userPsw = req.body.userPsw;
+
+    const result = await myDB2.verifyUser(userName, userPsw);
+
+    if (result.success) {
+      res.json({ success: true, user: result.user });
+    } else {
+      res.json({ success: false, message: result.message });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 export default router;

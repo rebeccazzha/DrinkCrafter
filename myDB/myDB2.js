@@ -47,6 +47,41 @@ function MyDB2() {
     }
   };
 
+  myDB2.insertUser = async (user) => {
+    const { client2, db2 } = await connectToMongoDB();
+    const usersCollection = db2.collection("user");
+
+    try {
+      const result = await usersCollection.insertOne(user);
+      return result;
+    } finally {
+      console.log("DB closing connection");
+      await client2.close();
+    }
+  };
+
+  myDB2.verifyUser = async (userName, userPsw) => {
+    const { client2, db2 } = await connectToMongoDB();
+    const usersCollection = db2.collection("user");
+
+    try {
+      const user = await usersCollection.findOne({ name: userName });
+
+      if (!user) {
+        return { success: false, message: "User not found" };
+      }
+
+      if (user.psw !== userPsw) {
+        return { success: false, message: "Incorrect password" };
+      }
+
+      return { success: true, user };
+    } finally {
+      console.log("DB closing connection");
+      await client2.close();
+    }
+  };
+
   myDB2.voteFact = async (factId, voteType) => {
     const { client2, db2 } = await connectToMongoDB();
     const factsCollection = db2.collection("funFacts");
