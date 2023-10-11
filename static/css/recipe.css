@@ -53,16 +53,18 @@ body {
     display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
+    font-weight: bold;
     text-align: center;
     text-decoration: none;
-    color: #fff;
-    background-color: #656e75;
+    color: #292524;
+    border: solid;
+    border-color: #292524;
     border-radius: 4px;
-    transition: background-color 0.3s ease;
+    transition: 0.3s;
 }
 
 .button-link:hover {
-    background-color: #161a1d;
+    transform: scale(110%);
 }
 
 .tag {
