@@ -38,7 +38,7 @@ function FrontEnd2() {
     const backgroundColor = category ? category.color : "#FFFFFF";
 
     return `
-    <li class="fact">
+    <li class="fact" id="fact-${fact._id}">
        <p>
        ${fact.text}
          <a class="source" href="${fact.source}" target="_blank">(source)</a>
@@ -82,15 +82,33 @@ function FrontEnd2() {
 
   categoryList.innerHTML = categoryFilter();
 
+  const allButton = document.querySelector(".btn-all");
+  document.addEventListener("DOMContentLoaded", function () {
+    allButton.addEventListener("click", async () => {
+      await me.reloadFacts();
+    });
+  });
+
   document.addEventListener("DOMContentLoaded", function () {
     categoryList.addEventListener("click", async (event) => {
       if (event.target.classList.contains("btn")) {
         const category = event.target.getAttribute("data-category");
-        console.log("Clicked category: " + category); // 添加这行用于调试
-        const filteredFacts = facts.filter(
-          (fact) => fact.category === category
-        );
-        me.renderFacts(filteredFacts);
+
+        facts.forEach((fact) => {
+          const factElement = document.getElementById(`fact-${fact._id}`);
+          if (factElement) {
+            factElement.style.display = "none";
+          }
+        });
+
+        facts
+          .filter((fact) => fact.category === category)
+          .forEach((fact) => {
+            const factElement = document.getElementById(`fact-${fact._id}`);
+            if (factElement) {
+              factElement.style.display = "block";
+            }
+          });
       }
     });
   });
@@ -122,7 +140,6 @@ function FrontEnd2() {
         factForm.querySelector('input[name="factText"]').value = "";
         factForm.querySelector('input[name="source"]').value = "";
         factForm.querySelector('select[name="category"]').value = "";
-        await me.reloadFacts();
       } else {
         console.error("Error posting fact");
       }
