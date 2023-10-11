@@ -112,9 +112,27 @@
               </p>
               <span class="tag" style="background-color: #3b82f6">RUM</span>
               <div class="vote-buttons">
-                <button>👍 24</button>
-                <button>🤯 9</button>
-                <button>⛔️ 4</button>
+                <button
+                  class="vote-btn"
+                  data-factid="${fact._id}"
+                  data-votetype="👍"
+                >
+                  👍 24
+                </button>
+                <button
+                  class="vote-btn"
+                  data-factid="${fact._id}"
+                  data-votetype="🤯"
+                >
+                  🤯 9
+                </button>
+                <button
+                  class="vote-btn"
+                  data-factid="${fact._id}"
+                  data-votetype="⛔️"
+                >
+                  ⛔️ 4
+                </button>
               </div>
             </li>
           </ul>

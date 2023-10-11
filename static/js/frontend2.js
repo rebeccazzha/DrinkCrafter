@@ -45,9 +45,10 @@ function FrontEnd2() {
       </p>
        <span class="tag" style="background-color: ${backgroundColor}">${fact.category}</span>
        <div class="vote-buttons">
-        <button>👍 ${fact.votesInteresting}</button>
-        <button>🤯 ${fact.votesMindblowing}</button>
-        <button>⛔️ ${fact.votesFalse}</button>
+       <button class="vote-btn" data-factid="${fact._id}" data-votetype="👍">👍 ${fact.votesInteresting}</button>
+       <button class="vote-btn" data-factid="${fact._id}" data-votetype="🤯">🤯 ${fact.votesMindblowing}</button>
+       <button class="vote-btn" data-factid="${fact._id}" data-votetype="⛔️">⛔️ ${fact.votesFalse}</button>
+       
       </div>
       </li>`;
   };
@@ -56,6 +57,73 @@ function FrontEnd2() {
     const html = facts.map(renderFact).join("\n");
     factList.insertAdjacentHTML("afterbegin", html);
   };
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const voteButtons = document.querySelectorAll(".vote-btn");
+    console.log("voteButtons:", voteButtons);
+    voteButtons.forEach((button) => {
+      console.log("voteButtons:", voteButtons);
+
+      button.addEventListener("click", async () => {
+        console.log("CLick vote!");
+        const factId = button.getAttribute("data-factid");
+        const voteType = button.getAttribute("data-votetype");
+        console.log(factId, voteType);
+
+        const response = await fetch("/api2/voteFact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ factId, voteType }),
+        });
+
+        if (response.status === 200) {
+          const updatedFact = await response.json();
+          const factElement = document.getElementById(`fact-${factId}`);
+          if (factElement) {
+            const votesElement = factElement.querySelector(
+              `button[data-factid="${factId}"][data-votetype="${voteType}"]`
+            );
+            if (votesElement) {
+              votesElement.textContent = `${voteType} ${updatedFact.votes}`;
+            }
+          }
+        } else {
+          console.error("Error voting for fact");
+        }
+      });
+    });
+  });
+
+  // const handleVoteButtonClick = async (event) => {
+  //   const button = event.target;
+  //   const factId = button.getAttribute("data-factid");
+  //   const voteType = button.getAttribute("data-votetype");
+
+  //   const response = await fetch("/api2/voteFact", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ factId, voteType }),
+  //   });
+
+  //   if (response.status === 200) {
+  //     const updatedFact = await response.json();
+  //     const factElement = document.getElementById(`fact-${factId}`);
+  //     if (factElement) {
+  //       const votesElement = factElement.querySelector(
+  //         `button[data-factid="${factId}"][data-votetype="${voteType}"]`
+  //       );
+  //       if (votesElement) {
+  //         votesElement.textContent = `${voteType} ${updatedFact.votes}`;
+  //       }
+  //     }
+  //   } else {
+  //     console.error("Error voting for fact");
+  //   }
+  // };
 
   const categoryFilter = function CategoryFilter() {
     const categoryButtons = CATEGORIES.map(

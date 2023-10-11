@@ -53,4 +53,24 @@ router.post("/postFact", async (req, res) => {
   }
 });
 
+router.post("/voteFact", async (req, res) => {
+  try {
+    const factId = req.body.factId;
+    const voteType = req.body.voteType;
+    console.log(factId, voteType);
+
+    if (!factId || !voteType) {
+      res.status(400).json({ error: "Invalid request" });
+      return;
+    }
+
+    const result = await myDB2.voteFact(factId, voteType);
+
+    res.json({ message: "Vote recorded successfully", updatedFact: result });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 export default router;
