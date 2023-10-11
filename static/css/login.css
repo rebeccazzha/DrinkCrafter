@@ -5,10 +5,11 @@
 
 .form-signin {
     max-width: 380px;
-    padding: 15px 35px 45px;
+    padding: 30px 35px 45px;
     margin: 0 auto;
-    background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: #F8F9FA;
+    border: none;
+    border-radius: 20px;
 
     .form-signin-heading,
     .checkbox {
@@ -21,6 +22,7 @@
 
     .form-control {
         position: relative;
+        margin-bottom: 15px;
         font-size: 16px;
         height: auto;
         padding: 10px;
@@ -42,4 +44,17 @@
         border-top-left-radius: 0;
         border-top-right-radius: 0;
     }
+}
+
+.form-signin .btn-submit {
+    margin-top: 10px;
+    color: #F8F9FA;
+    font-weight: bold;
+    border: none;
+    background-image: linear-gradient(135deg, #3b82f6, #ef4444, #16a34a, #eab308);
+    transition: 0.3s;
+}
+
+.form-signin .btn-submit:hover {
+    transform: scale(110%);
 }

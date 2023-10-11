@@ -25,7 +25,9 @@
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
       <div class="container-fluid">
-        <img src="./img/drink-crafter-logo.png" alt="DrinkCrafter logo" />
+        <div class="brand-img-top">
+          <img src="./img/drink-crafter-logo.png" alt="DrinkCrafter logo" />
+        </div>
         <a class="navbar-brand" href="index.html">DrinkCrafter</a>
         <button
           class="navbar-toggler"
@@ -62,7 +64,9 @@
                   />
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a class="dropdown-item" href="#">Login</a></li>
+                  <li>
+                    <a class="dropdown-item" href="./login.html">Login</a>
+                  </li>
                   <li><a class="dropdown-item" href="#">Collection</a></li>
                   <li><hr class="dropdown-divider" /></li>
                   <li><a class="dropdown-item" href="#">Logout</a></li>
@@ -92,10 +96,7 @@
           placeholder="Password"
           required=""
         />
-        <button
-          class="btn btn-lg btn-primary btn-block btn-submit"
-          type="submit"
-        >
+        <button class="btn btn-lg btn-block btn-submit" type="submit">
           Login
         </button>
       </form>
