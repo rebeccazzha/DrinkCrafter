@@ -49,6 +49,22 @@ body {
     transform: scale(110%);
 }
 
+.button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color:#656e75;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.button-link:hover {
+    background-color: #161a1d;
+}
+
 .tag {
     text-transform: uppercase;
     font-size: 12px;

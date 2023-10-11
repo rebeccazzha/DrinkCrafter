@@ -43,7 +43,21 @@ function MyDB() {
       console.log("DB closing connection");
       await client.close();
     }
-};
+  };
+
+  myDB.addNewDrink = async (newDrink) => {
+    const { client, db } = await connect();
+    const drinksCollection = db.collection("recipe");
+    
+    try {
+      const result = await drinksCollection.insertOne(newDrink);
+      return result;
+    } catch (error) {
+      console.error(error);
+    } finally {
+      await client.close();
+    }
+  };
 
   return myDB;
 }
