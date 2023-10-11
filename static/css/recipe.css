@@ -1,7 +1,15 @@
-body {
-    padding-top: 70px;
-    background-color: black;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+body {
+    font-family: 'Vollkorn', serif;
+    padding: 90px 40px;
+    color: #292524;
+}
+
 
 .thumbnail-image {
     height: 100%;
@@ -14,9 +22,18 @@ body {
     margin-top: 20px;
 }
 
+.thumb-container .card {
+    background-color: #e7e5e4;
+    border: none;
+}
+
 .my-dropdown-button {
     width: 60%;
     margin: 0 auto;
     display: block;
     background-color: aliceblues;
+}
+
+.card-body .btn-explore {
+    background-color: #fafafa;
 }

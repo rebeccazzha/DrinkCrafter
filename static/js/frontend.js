@@ -20,27 +20,27 @@ function FrontEnd() {
             <div class="card-body">
                 <h5 class="card-title">${drink.label}</h5>
                 <p class="card-text">Ingredients: ${drink.description}</p>
-                <a href="${detailPageLink}" class="btn btn-primary">Explore</a>
+                <a href="${detailPageLink}" class="btn btn-explore">Explore</a>
             </div>
         </div>
     </div>`;
-};
-
+  };
 
   me.renderDrinks = function (drinks) {
     const drinksContainer = document.querySelector("#drinks-container");
     drinksContainer.innerHTML = drinks.map(renderDrink).join("\n");
   };
 
-  document.querySelectorAll('.dropdown-item').forEach(item => {
-    item.addEventListener('click', function() {
+  document.querySelectorAll(".dropdown-item").forEach((item) => {
+    item.addEventListener("click", function () {
       const baseId = this.dataset.baseId;
       frontend.filterByBaseId(baseId);
     });
   });
-  
+
   me.filterByBaseId = async function (baseId) {
-    const endpoint = baseId == 0 ? '/api/drinks' : `/api/drinks?base_id=${baseId}`;
+    const endpoint =
+      baseId == 0 ? "/api/drinks" : `/api/drinks?base_id=${baseId}`;
     const res = await fetch(endpoint);
     if (res.status !== 200 && res.status !== 304) {
       console.error("Error loading drinks");
@@ -49,13 +49,9 @@ function FrontEnd() {
     const drinks = await res.json();
     me.renderDrinks(drinks);
   };
-  
-  
-  
 
   return me;
 }
 
 const frontend = FrontEnd();
 frontend.reloadDrinks();
-  
