@@ -6,7 +6,7 @@
   <title>Recipe</title>
   <link rel="stylesheet" href="./css/bootstrap-5.3.2-dist/css/bootstrap.css">
   <link rel="stylesheet" href="./css/navbar.css">
-  <link rel="stylesheet" href="./css/recipe.css">
+  <link rel="stylesheet" href="./css/insertDrink.css">
 </head>
 <body>
   <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
@@ -40,30 +40,33 @@
       </div>
     </div>
   </nav>
-  <div class="container mt-3">
-    <div class="input-group">
-      <button class="btn btn-outline-secondary dropdown-toggle my-dropdown-button" 
-      type="button" data-bs-toggle="dropdown" aria-expanded="false">Filter by base alcohol</button>
-      <ul class="dropdown-menu dropdown-menu-end">
-        <li><a class="dropdown-item" data-base-id="1">Vodka</a></li>
-        <li><a class="dropdown-item" data-base-id="2">Whiskey</a></li>
-        <li><a class="dropdown-item" data-base-id="3">Rum</a></li>
-        <li><a class="dropdown-item" data-base-id="4">Tequila</a></li>
-        <li><a class="dropdown-item" data-base-id="5">Gin</a></li>
-        <li><a class="dropdown-item" data-base-id="7">Brandy</a></li>
-        <li><a class="dropdown-item" data-base-id="6">Mixed</a></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" data-base-id="0">Clear Filter</a></li>
-      </ul>
-    </div>
-    <a href="insertDrink.html" class="button-link">Post New Recipe</a>
-  </div>
-
-  <div class="row" id="drinks-container">
-    <!-- Drink cards in recipe.js -->
-  </div>
-  
-  <script src="./js/frontend.js" ></script>
-  <script src="./css/bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+  <form id="drink-form">
+    <label for="name">Drink Name:</label>
+    <input type="text" id="name" name="name">
+    
+    <label for="image_url">Image URL:</label>
+    <input type="text" id="image_url" name="image_url">
+    
+    <label for="ingredients">Ingredients:</label>
+    <input type="text" id="ingredients" name="ingredients">
+    
+    <label for="base">What base alcohol are used:</label>
+    <select id="base" name="base">
+      <option value="vodka">Vodka</option>
+      <option value="whiskey">Whiskey</option>
+      <option value="rum">Rum</option>
+      <option value="tequila">Tequila</option>
+      <option value="gin">Gin</option>
+      <option value="brandy">Brandy</option>
+      <option value="mixed">Mixed Base</option>
+    </select>
+    
+    <label for="recipe">Recipe:</label>
+    <textarea id="recipe" name="recipe"></textarea>
+    
+    <input type="submit" value="Submit">
+  </form>
+  <script src="./js/insertDrink.js" ></script>
+    <script src="./css/bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
