@@ -1,7 +1,15 @@
-body {
-    padding-top: 70px;
-    background-color: black;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+body {
+    font-family: 'Vollkorn', serif;
+    padding: 90px 40px;
+    color: #292524;
+}
+
 
 .thumbnail-image {
     height: 100%;
@@ -14,11 +22,31 @@ body {
     margin-top: 20px;
 }
 
+.thumb-container .card {
+    background-color: #F8F9FA;
+    border: none;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
 .my-dropdown-button {
+    color: #F8F9FA;
+    font-weight: bold;
     width: 60%;
     margin: 0 auto;
     display: block;
-    background-color: aliceblues;
+    background-image: linear-gradient(135deg, #3b82f6, #ef4444, #16a34a, #eab308);
+    border: none;
+}
+
+
+.card-body .btn-explore {
+    border: solid;
+    border-color: #292524;
+    transition: 0.3s;
+}
+
+.card-body .btn-explore:hover {
+    transform: scale(110%);
 }
 
 .button-link {
@@ -35,4 +63,15 @@ body {
 
 .button-link:hover {
     background-color: #161a1d;
+}
+
+.tag {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fafaf9;
+    padding-top: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 30px;
 }
