@@ -11,8 +11,7 @@ body {
 }
 
 .title-section {
-  background-image: url('../img/title.webp');
-  /* Replace with your image URL */
+  background-image: url('../img/cocktail-poster.png');
   background-size: cover;
   background-position: center;
   height: 40vh;
@@ -24,18 +23,43 @@ body {
   color: white;
 }
 
+.title-section h1 {
+  color: #292524;
+  font-weight: 700;
+}
+
 .login {
-  background-color: blueviolet;
-  color: white;
+  color: #292524;
+  font-weight: bold;
+  border: solid;
+  border-color: #292524;
+  margin-left: 10px;
+  margin-right: 10px;
+  transition: 0.3s;
 }
 
 .signup {
-  background-color: #a528a7;
-  color: white;
+  color: #292524;
+  font-weight: bold;
+  border: solid;
+  border-color: #292524;
+  margin-left: 10px;
+  margin-right: 10px;
+  transition: 0.3s;
 }
 
-.btn:hover {
-  opacity: 0.8;
+.login:hover {
+  transform: scale(110%);
+  background-image: linear-gradient(135deg, #3b82f6, #ef4444, #16a34a, #eab308);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.signup:hover {
+  transform: scale(110%);
+  background-image: linear-gradient(135deg, #3b82f6, #ef4444, #16a34a, #eab308);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 .card-section {
@@ -45,12 +69,28 @@ body {
 }
 
 .card {
-  margin: 20px 30px;
+  width: 60rem;
+  height: auto;
+  margin: 20px 10px;
   background-color: #F8F9FA;
   border: none;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-.btn-primary {
-  background-color: black;
+.image-container img {
+  width: 100%;
+  height: 25rem;
+  object-fit: cover;
+}
+
+.card-body .btn-explore {
+  color: #F8F9FA;
+  font-weight: bold;
+  border: none;
+  background-image: linear-gradient(135deg, #3b82f6, #ef4444, #16a34a, #eab308);
+  transition: 0.3s;
+}
+
+.card-body .btn-explore:hover {
+  transform: scale(110%);
 }
