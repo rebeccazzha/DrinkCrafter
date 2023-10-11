@@ -15,6 +15,7 @@ document.querySelector('#drink-form').addEventListener('submit', async function(
       headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify(formData)
     });
 
     if(response.ok) {
