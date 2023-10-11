@@ -33,11 +33,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         <img src="${drink.image_url}" class="card-img-top detail-image" alt="${drink.label}">
         <div class="card-body">
             <h1 id="drink-title">${drink.label}</h1>
+            <hr/>
             <h3>Key Ingredients</h3>
             <p id="drink-description">${drink.description}</p>
             <h3>Detailed Recipe</h3>
             <p id="drink-recipe">${drink.recipe}</p>
-            <a href="./recipe.html" type="button" class="btn btn-info">Go Back</a>
+            <div id="button-wrapper">
+              <a href="./recipe.html" id="back-button" class="btn btn-info">Go Back</a>
+            </div>
         </div>
     </div>`;
 
