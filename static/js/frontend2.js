@@ -16,9 +16,12 @@ function FrontEnd2() {
   const factForm = document.querySelector(".fact-form");
   const factList = document.querySelector(".fact-list");
   const categoryList = document.querySelector(".category");
+  const postButton = document.querySelector(".post-btn");
 
   // Create DOM elements: Render facts in list
   factList.innerHTML = "";
+
+  let facts = [];
 
   me.reloadFacts = async function () {
     const res = await fetch("/api2/funFacts");
@@ -26,32 +29,39 @@ function FrontEnd2() {
       console.error("Error loading facts");
       return;
     }
-    const facts = await res.json();
+    facts = await res.json();
     me.renderFacts(facts);
   };
 
   const renderFact = function (fact) {
+    const category = CATEGORIES.find((cat) => cat.name === fact.category);
+    const backgroundColor = category ? category.color : "#FFFFFF";
+
     return `
     <li class="fact">
        <p>
        ${fact.text}
          <a class="source" href="${fact.source}" target="_blank">(source)</a>
       </p>
-       <span class="tag" style="background-color: ${
-         CATEGORIES.find((cat) => cat.name === fact.category).color
-       }">${fact.category}</span>
+       <span class="tag" style="background-color: ${backgroundColor}">${fact.category}</span>
+       <div class="vote-buttons">
+        <button>👍 ${fact.votesInteresting}</button>
+        <button>🤯 ${fact.votesMindblowing}</button>
+        <button>⛔️ ${fact.votesFalse}</button>
+      </div>
       </li>`;
   };
 
   me.renderFacts = function (facts) {
-    factList.innerHTML = facts.map(renderFact).join("\n");
+    const html = facts.map(renderFact).join("\n");
+    factList.insertAdjacentHTML("afterbegin", html);
   };
 
   const categoryFilter = function CategoryFilter() {
     const categoryButtons = CATEGORIES.map(
       (cat) => `
       <li class="category">
-        <button class="btn btn-category" style="background-color: ${cat.color}">
+        <button class="btn btn-category" data-category="${cat.name}" style="background-color: ${cat.color}">
           ${cat.name}
         </button>
       </li>
@@ -71,9 +81,53 @@ function FrontEnd2() {
   };
 
   categoryList.innerHTML = categoryFilter();
-  // me.renderCategory = function (cats) {
-  //   categoryList.innerHTML = cats.map(categoryFilter).join("\n");
-  // };
+
+  document.addEventListener("DOMContentLoaded", function () {
+    categoryList.addEventListener("click", async (event) => {
+      if (event.target.classList.contains("btn")) {
+        const category = event.target.getAttribute("data-category");
+        console.log("Clicked category: " + category); // 添加这行用于调试
+        const filteredFacts = facts.filter(
+          (fact) => fact.category === category
+        );
+        me.renderFacts(filteredFacts);
+      }
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    postButton.addEventListener("click", async (event) => {
+      event.preventDefault();
+
+      const factText = factForm.querySelector('input[name="factText"]').value;
+      const source = factForm.querySelector('input[name="source"]').value;
+      console.log("Button clicked!");
+      const category = factForm.querySelector('select[name="category"]').value;
+
+      const factData = {
+        factText,
+        source,
+        category,
+      };
+
+      const response = await fetch("/api2/postFact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(factData),
+      });
+
+      if (response.status === 200) {
+        factForm.querySelector('input[name="factText"]').value = "";
+        factForm.querySelector('input[name="source"]').value = "";
+        factForm.querySelector('select[name="category"]').value = "";
+        await me.reloadFacts();
+      } else {
+        console.error("Error posting fact");
+      }
+    });
+  });
 
   return me;
 }

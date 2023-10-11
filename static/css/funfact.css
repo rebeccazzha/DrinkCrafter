@@ -99,7 +99,7 @@ h1 {
 
 .vote-buttons button {
     border: none;
-    background-color: #e7e5e4;
+    background-color: #fafaf9;
     font-size: 18px;
     padding: 6px 12px;
     border-radius: 100px;
@@ -111,7 +111,7 @@ h1 {
 }
 
 .vote-buttons button:hover {
-    background-color: #e7e5e4;
+    background-color: #94a3b8;
 }
 
 ul {
