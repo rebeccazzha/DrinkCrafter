@@ -12,7 +12,11 @@
   "license": "MIT",
   "dependencies": {
     "body-parse": "^0.1.0",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mongodb": "^6.1.0"
+  },
+  "engines": {
+    "node": ">=18.18.0 <19.0.0"
   }
 }

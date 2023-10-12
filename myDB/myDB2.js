@@ -1,8 +1,9 @@
+import "dotenv/config";
+
 import { MongoClient } from "mongodb";
 
 function MyDB2() {
-  const uri2 =
-    "mongodb+srv://RebeccaZYH:xwS8lx84M58ajNWE@cluster-funfacts.icnk34i.mongodb.net/";
+  const uri2 = process.env.MONGO_URL;
   const myDB2 = {};
 
   const connectToMongoDB = async () => {
