@@ -28,12 +28,13 @@ Class Link: [Web Development Fall 2023](https://johnguerra.co/classes/webDevelop
 
 5. **Recipe Liked and Collected Lists**  
    Users can like and collect their favorite bartending recipes to the collection list.
+   ![Recipe collection image](https://github.com/rebeccazzha/DrinkCrafter/blob/main/static/img/collect.png)
 
-6. **Fun Facts Sharing**  
+7. **Fun Facts Sharing**  
    Users can share interesting and entertaining facts about different liquors.
    ![Fun fact page image](https://github.com/rebeccazzha/DrinkCrafter/blob/main/static/img/funfact.png)
 
-7. **Fun Facts Rating**  
+8. **Fun Facts Rating**  
    Users can rate fun facts by clicking tags such as ":+1:", ":exploding_head:", and ":-1:". Aggregate ratings help users identify the most engaging facts.
    ![Fun fact like image](https://github.com/rebeccazzha/DrinkCrafter/blob/main/static/img/funfact.png)
 
