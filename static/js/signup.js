@@ -32,7 +32,7 @@ function SignUp() {
         signUpForm.querySelector('input[name="password"]').value = "";
         window.location.href = "./login.html";
       } else {
-        console.error("Error posting fact");
+        console.error("Error adding user");
       }
     });
   });

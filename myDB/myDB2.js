@@ -72,7 +72,7 @@ function MyDB2() {
         return { success: false, message: "User not found" };
       }
 
-      if (user.psw !== userPsw) {
+      if (user.password !== userPsw) {
         return { success: false, message: "Incorrect password" };
       }
 

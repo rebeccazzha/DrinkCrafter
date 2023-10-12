@@ -85,6 +85,8 @@ router.post("/addUser", async (req, res) => {
       collection: userCollection,
     };
 
+    const result = await myDB2.insertUser(userToInsert);
+
     res.json({ message: "Fact inserted successfully", result });
   } catch (error) {
     console.error(error);
@@ -108,7 +110,7 @@ router.post("/verifyUser", async (req, res) => {
 
       res.json({ success: true, token });
     } else {
-      res.json({ success: false, message: result.message });
+      return res.status(401).json({ message: "Invalid credentials" });
     }
   } catch (error) {
     console.error(error);

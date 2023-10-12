@@ -35,7 +35,7 @@ function LogIn() {
       } else {
         errorContainer.textContent =
           "Username or password is incorrect. Please try again.";
-        console.error("Error posting fact");
+        console.error("Error login");
       }
     });
   });
