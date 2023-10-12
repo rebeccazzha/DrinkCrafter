@@ -110,7 +110,7 @@ router.post("/verifyUser", async (req, res) => {
 
       res.json({ success: true, token });
     } else {
-      res.json({ success: false, message: result.message });
+      return res.status(401).json({ message: "Invalid credentials" });
     }
   } catch (error) {
     console.error(error);
