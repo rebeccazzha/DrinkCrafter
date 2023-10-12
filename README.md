@@ -11,7 +11,7 @@ Class Link: [Web Development Fall 2023](https://johnguerra.co/classes/webDevelop
 ## Project Functionalities
 
 1.Homepage
-  [Homepage image](https://rebeccazzha.github.io/DrinkCrafter/static/img/homepage.png)
+  [Homepage image](/static/img/homepage.png)
 2. Users sign up and login. 
 3. Recipe Upload and Sharing: 
        Users can upload their own bartending recipes along with images. Recipes can include ingredients, preparation steps, and serving suggestions.
