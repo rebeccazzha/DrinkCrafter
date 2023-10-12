@@ -82,6 +82,40 @@ function MyDB2() {
     }
   };
 
+  myDB2.insertToken = async (userId, token) => {
+    const { client2, db2 } = await connectToMongoDB();
+    const tokenCollection = db2.collection("token");
+
+    try {
+      await tokenCollection.insertOne({ userId, token });
+    } finally {
+      await client2.close();
+    }
+  };
+
+  myDB2.getTokenByUserId = async (token) => {
+    const { client2, db2 } = await connectToMongoDB();
+    const tokenCollection = db2.collection("token");
+
+    try {
+      const tokenData = await tokenCollection.findOne({ token });
+      return tokenData ? tokenData.userId : null;
+    } finally {
+      await client2.close();
+    }
+  };
+
+  myDB2.deleteToken = async (userId, token) => {
+    const { client2, db2 } = await connectToMongoDB();
+    const tokenCollection = db2.collection("token");
+
+    try {
+      await tokenCollection.deleteOne({ userId, token });
+    } finally {
+      await client2.close();
+    }
+  };
+
   myDB2.voteFact = async (factId, voteType) => {
     const { client2, db2 } = await connectToMongoDB();
     const factsCollection = db2.collection("funFacts");

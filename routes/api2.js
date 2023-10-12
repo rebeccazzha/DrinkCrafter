@@ -85,8 +85,6 @@ router.post("/addUser", async (req, res) => {
       collection: userCollection,
     };
 
-    const result = await myDB2.insertUser(userToInsert);
-
     res.json({ message: "Fact inserted successfully", result });
   } catch (error) {
     console.error(error);
@@ -102,13 +100,32 @@ router.post("/verifyUser", async (req, res) => {
     const result = await myDB2.verifyUser(userName, userPsw);
 
     if (result.success) {
-      res.json({ success: true, user: result.user });
+      const token = `user-${result.user._id}-${Math.random()
+        .toString(36)
+        .substring(7)}`;
+
+      await myDB2.insertToken(result.user._id, token);
+
+      res.json({ success: true, token });
     } else {
       res.json({ success: false, message: result.message });
     }
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
+  }
+});
+
+router.post("/logout", async (req, res) => {
+  const token = req.headers.authorization;
+
+  const userId = await myDB2.getUserIdByToken(token);
+
+  if (userId) {
+    await myDB2.deleteToken(userId, token);
+    res.json({ message: "User logged out successfully" });
+  } else {
+    res.status(401).json({ message: "Invalid token" });
   }
 });
 
