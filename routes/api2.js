@@ -85,6 +85,8 @@ router.post("/addUser", async (req, res) => {
       collection: userCollection,
     };
 
+    const result = await myDB2.insertUser(userToInsert);
+
     res.json({ message: "Fact inserted successfully", result });
   } catch (error) {
     console.error(error);
