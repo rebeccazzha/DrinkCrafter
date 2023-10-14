@@ -22,7 +22,6 @@ function Index() {
 
   function checkUserLoginStatus() {
     const user = JSON.parse(sessionStorage.getItem("user"));
-    console.log("User from sessionStorage:", user);
     return user;
   }
   return me;

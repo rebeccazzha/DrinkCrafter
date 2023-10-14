@@ -160,7 +160,6 @@ function MyDB2() {
         return { status: 404, message: "User not found" };
       }
       const recipesCollection = userSelect.collection;
-      console.log("recipesCollection: " + recipesCollection);
       if (!Array.isArray(recipesCollection)) {
         return { status: 400, message: "Recipes collection is not an array" };
       }

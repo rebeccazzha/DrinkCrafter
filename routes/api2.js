@@ -159,7 +159,6 @@ router.post("/addToCollection", async (req, res) => {
 router.get("/collectDrinks", async (req, res) => {
   try {
     const userName = req.query.userName;
-    console.log("userName:", userName);
     const result = await myDB2.getDrinks(userName);
     if (result.status === 200) {
       res.json(result.recipesCollection);
