@@ -141,8 +141,9 @@ function MyDB2() {
       } else if (voteType === "🤯") {
         await factsCollection.updateOne(
           { _id: dbObjectId },
-          { $set: { votesMindBlowing: fact.votesMindblowing + 1 } }
+          { $set: { votesMindblowing: fact.votesMindblowing + 1 } }
         );
+        console.log("VOTE: " + fact.votesMindblowing);
       } else if (voteType === "⛔️") {
         await factsCollection.updateOne(
           { _id: dbObjectId },

@@ -33,7 +33,6 @@ function FrontEnd2() {
     facts = await res.json();
     me.renderFacts(facts);
     voteButtons = document.querySelectorAll(".vote-btn");
-    console.log(voteButtons);
     me.votes();
   };
 
@@ -60,10 +59,6 @@ function FrontEnd2() {
     factList.innerHTML = facts.map(renderFact).join("\n");
   };
 
-  // document.addEventListener("DOMContentLoaded", function () {
-  // const voteButtons = document.querySelectorAll(".vote-btn");
-
-  // console.log("voteButtons:", voteButtons);
   me.votes = async function () {
     voteButtons.forEach((button) => {
       button.addEventListener("click", async () => {
@@ -81,15 +76,7 @@ function FrontEnd2() {
 
         if (response.status === 200) {
           const updatedFact = await response.json();
-          const factElement = document.getElementById(`fact-${factId}`);
-          if (factElement) {
-            const votesElement = factElement.querySelector(
-              `button[data-factid="${factId}"][data-votetype="${voteType}"]`
-            );
-            if (votesElement) {
-              votesElement.textContent = `${voteType} ${updatedFact.votes}`;
-            }
-          }
+          await me.reloadFacts();
         } else {
           console.error("Error voting for fact");
         }
