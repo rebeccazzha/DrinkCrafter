@@ -28,6 +28,10 @@ body {
   font-weight: 700;
 }
 
+.welcome-text {
+  color: #292524;
+}
+
 .login {
   color: #292524;
   font-weight: bold;

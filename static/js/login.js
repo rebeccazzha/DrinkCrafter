@@ -1,6 +1,5 @@
 function LogIn() {
   const me = {};
-  let userToken = null;
 
   document.addEventListener("DOMContentLoaded", () => {
     const logInBtn = document.querySelector(".btn-submit");
@@ -25,10 +24,13 @@ function LogIn() {
         },
         body: JSON.stringify(userData),
       });
+      console.log(response);
 
       if (response.status === 200) {
         const data = await response.json();
-        userToken = data.token;
+        const userData = { username: userName };
+        sessionStorage.setItem("user", JSON.stringify(userData));
+
         logInForm.querySelector('input[name="username"]').value = "";
         logInForm.querySelector('input[name="password"]').value = "";
         window.location.href = "./index.html";
@@ -36,34 +38,6 @@ function LogIn() {
         errorContainer.textContent =
           "Username or password is incorrect. Please try again.";
         console.error("Error login");
-      }
-    });
-  });
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const logoutButton = document.querySelector(".logout-btn");
-
-    logoutButton.addEventListener("click", async (event) => {
-      event.preventDefault();
-      if (userToken) {
-        try {
-          const response = await fetch("/api2/logout", {
-            method: "POST",
-            headers: {
-              Authorization: userToken,
-            },
-          });
-
-          if (response.status === 200) {
-            window.location.href = "/login.html";
-          } else {
-            console.error("Logout failed");
-          }
-        } catch (error) {
-          console.error("Error during logout:", error);
-        }
-      } else {
-        console.error("User token not found");
       }
     });
   });

@@ -4,15 +4,12 @@ function SignUp() {
   document.addEventListener("DOMContentLoaded", () => {
     const signUpBtn = document.querySelector(".btn-submit");
     const signUpForm = document.querySelector(".form-signin");
-    console.log("TEST!");
 
     signUpBtn.addEventListener("click", async (event) => {
       event.preventDefault();
-      console.log("TEST CLICK!");
 
       const userName = signUpForm.querySelector('input[name="username"]').value;
       const userPsw = signUpForm.querySelector('input[name="password"]').value;
-      console.log("Button clicked!");
 
       const userData = {
         userName,

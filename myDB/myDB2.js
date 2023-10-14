@@ -7,10 +7,7 @@ function MyDB2() {
   const myDB2 = {};
 
   const connectToMongoDB = async () => {
-    const client2 = new MongoClient(uri2, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    const client2 = new MongoClient(uri2);
     await client2.connect();
     const db2 = client2.db("DrinkCrafter");
 
@@ -65,16 +62,19 @@ function MyDB2() {
     const { client2, db2 } = await connectToMongoDB();
     const usersCollection = db2.collection("user");
 
-    try {
-      const user = await usersCollection.findOne({ name: userName });
+    const user = await usersCollection.findOne({ name: userName });
 
+    try {
       if (!user) {
+        console.log("User not found");
         return { success: false, message: "User not found" };
       }
 
-      if (user.password !== userPsw) {
+      if (user.psw !== userPsw) {
+        console.log("Password incorrect");
         return { success: false, message: "Incorrect password" };
       }
+      console.log("Password correct");
 
       return { success: true, user };
     } finally {
@@ -83,28 +83,28 @@ function MyDB2() {
     }
   };
 
-  myDB2.insertToken = async (userId, token) => {
-    const { client2, db2 } = await connectToMongoDB();
-    const tokenCollection = db2.collection("token");
+  // myDB2.insertToken = async (userId, token) => {
+  //   const { client2, db2 } = await connectToMongoDB();
+  //   const tokenCollection = db2.collection("token");
 
-    try {
-      await tokenCollection.insertOne({ userId, token });
-    } finally {
-      await client2.close();
-    }
-  };
+  //   try {
+  //     await tokenCollection.insertOne({ userId, token });
+  //   } finally {
+  //     await client2.close();
+  //   }
+  // };
 
-  myDB2.getTokenByUserId = async (token) => {
-    const { client2, db2 } = await connectToMongoDB();
-    const tokenCollection = db2.collection("token");
+  // myDB2.getTokenByUserId = async (token) => {
+  //   const { client2, db2 } = await connectToMongoDB();
+  //   const tokenCollection = db2.collection("token");
 
-    try {
-      const tokenData = await tokenCollection.findOne({ token });
-      return tokenData ? tokenData.userId : null;
-    } finally {
-      await client2.close();
-    }
-  };
+  //   try {
+  //     const tokenData = await tokenCollection.findOne({ token });
+  //     return tokenData ? tokenData.userId : null;
+  //   } finally {
+  //     await client2.close();
+  //   }
+  // };
 
   myDB2.deleteToken = async (userId, token) => {
     const { client2, db2 } = await connectToMongoDB();

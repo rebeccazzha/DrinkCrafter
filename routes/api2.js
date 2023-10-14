@@ -1,4 +1,6 @@
 import express from "express";
+import session from "express-session";
+import crypto from "crypto";
 const router = express.Router();
 import { myDB2 } from "../myDB/myDB2.js";
 
@@ -87,12 +89,21 @@ router.post("/addUser", async (req, res) => {
 
     const result = await myDB2.insertUser(userToInsert);
 
-    res.json({ message: "Fact inserted successfully", result });
+    res.json({ message: "User inserted successfully", result });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
   }
 });
+
+const secret = crypto.randomBytes(32).toString("hex");
+router.use(
+  session({
+    secret: secret,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 router.post("/verifyUser", async (req, res) => {
   try {
@@ -102,33 +113,30 @@ router.post("/verifyUser", async (req, res) => {
     const result = await myDB2.verifyUser(userName, userPsw);
 
     if (result.success) {
-      const token = `user-${result.user._id}-${Math.random()
-        .toString(36)
-        .substring(7)}`;
-
-      await myDB2.insertToken(result.user._id, token);
-
-      res.json({ success: true, token });
+      req.session.user = { username: userName };
+      res.status(200).json({ success: true, message: "Login successful" });
     } else {
+      console.log("Authentication failed:", result.message);
       return res.status(401).json({ message: "Invalid credentials" });
     }
   } catch (error) {
-    console.error(error);
+    console.log("An error occurred during user verification:", error);
+
+    console.error("Error during verification:", error);
     res.status(500).send("Internal Server Error");
   }
 });
 
-router.post("/logout", async (req, res) => {
-  const token = req.headers.authorization;
-
-  const userId = await myDB2.getUserIdByToken(token);
-
-  if (userId) {
-    await myDB2.deleteToken(userId, token);
-    res.json({ message: "User logged out successfully" });
-  } else {
-    res.status(401).json({ message: "Invalid token" });
-  }
+router.get("/logout", async (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Error destroying session:", err);
+      res.status(500).json({ message: "Internal Server Error" });
+    } else {
+      console.log("Successfully log out");
+      res.status(200).json({ message: "Logout successful" });
+    }
+  });
 });
 
 export default router;
