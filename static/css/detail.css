@@ -87,3 +87,7 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+.collect-text {
+    margin-top: 20px;
+}

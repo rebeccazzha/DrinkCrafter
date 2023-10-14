@@ -44,6 +44,7 @@ function renderDetailPage(drink) {
             <a class="btn btn-info collect-button">❤️COLLECT</a>
               <a href="./recipe.html" id="back-button" class="btn btn-info">Go Back</a>
             </div>
+            <p class="collect-text text-success text-center"></p>
         </div>
     </div>`;
 
@@ -53,14 +54,15 @@ function renderDetailPage(drink) {
 
 function collectRecipes(drink) {
   const collectButton = document.querySelector(".collect-button");
+  const textArea = document.querySelector(".collect-text");
 
   collectButton.addEventListener("click", (event) => {
     event.preventDefault();
-    console.log("CLICK!");
 
     const drinkId = drink._id;
     const userLoggedIn = checkUserLoginStatus().username;
     collectDrink(userLoggedIn, drinkId);
+    textArea.textContent = "Collection Successful!!!";
   });
 
   async function collectDrink(userName, drinkId) {
