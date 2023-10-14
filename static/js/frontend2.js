@@ -22,6 +22,7 @@ function FrontEnd2() {
   factList.innerHTML = "";
 
   let facts = [];
+  let voteButtons = [];
 
   me.reloadFacts = async function () {
     const res = await fetch("/api2/funFacts");
@@ -31,6 +32,9 @@ function FrontEnd2() {
     }
     facts = await res.json();
     me.renderFacts(facts);
+    voteButtons = document.querySelectorAll(".vote-btn");
+    console.log(voteButtons);
+    me.votes();
   };
 
   const renderFact = function (fact) {
@@ -56,18 +60,16 @@ function FrontEnd2() {
     factList.innerHTML = facts.map(renderFact).join("\n");
   };
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const voteButtons = document.querySelectorAll(".vote-btn");
-    console.log("voteButtons:", voteButtons);
+  // document.addEventListener("DOMContentLoaded", function () {
+  // const voteButtons = document.querySelectorAll(".vote-btn");
 
+  // console.log("voteButtons:", voteButtons);
+  me.votes = async function () {
     voteButtons.forEach((button) => {
-      console.log("voteButtons:", voteButtons);
-
       button.addEventListener("click", async () => {
         console.log("CLick vote!");
         const factId = button.getAttribute("data-factid");
         const voteType = button.getAttribute("data-votetype");
-        // console.log(factId, voteType);
 
         const response = await fetch("/api2/voteFact", {
           method: "POST",
@@ -93,7 +95,8 @@ function FrontEnd2() {
         }
       });
     });
-  });
+  };
+  // });
 
   const categoryFilter = function CategoryFilter() {
     const categoryButtons = CATEGORIES.map(

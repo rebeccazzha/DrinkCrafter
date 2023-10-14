@@ -122,25 +122,36 @@ function MyDB2() {
   myDB2.voteFact = async (factId, voteType) => {
     const { client2, db2 } = await connectToMongoDB();
     const factsCollection = db2.collection("funFacts");
+    const dbObjectId = new ObjectId(factId);
+    console.log(dbObjectId, voteType);
 
     try {
-      const fact = await factsCollection.findOne({ _id: factId });
+      const fact = await factsCollection.findOne({ _id: dbObjectId });
+      console.log("FACT: " + fact);
 
       if (!fact) {
         throw new Error("Fact not found");
       }
 
       if (voteType === "👍") {
-        fact.votesInteresting++;
+        await factsCollection.updateOne(
+          { _id: dbObjectId },
+          { $set: { votesInteresting: fact.votesInteresting + 1 } }
+        );
       } else if (voteType === "🤯") {
-        fact.votesMindblowing++;
+        await factsCollection.updateOne(
+          { _id: dbObjectId },
+          { $set: { votesMindBlowing: fact.votesMindblowing + 1 } }
+        );
       } else if (voteType === "⛔️") {
-        fact.votesFalse++;
+        await factsCollection.updateOne(
+          { _id: dbObjectId },
+          { $set: { votesFalse: fact.votesFalse + 1 } }
+        );
+        console.log("VOTE: " + fact.votesFalse);
       } else {
         throw new Error("Invalid vote type");
       }
-
-      await factsCollection.updateOne({ _id: factId }, { $set: fact });
 
       return fact;
     } finally {
