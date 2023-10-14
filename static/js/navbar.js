@@ -7,7 +7,6 @@ function NavBarLogin() {
     const logoutButton = document.querySelector(".logout-btn");
 
     const userLoggedIn = checkUserLoginStatus();
-    console.log("Status: " + userLoggedIn);
 
     if (userLoggedIn) {
       loginButton.style.display = "none";

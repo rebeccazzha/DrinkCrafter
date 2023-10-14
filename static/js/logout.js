@@ -10,7 +10,6 @@ function LogOut() {
         const response = await fetch("/api2/logout", {
           method: "GET",
         });
-        console.log("Status: " + response.status);
 
         if (response.status === 200) {
           sessionStorage.removeItem("user");

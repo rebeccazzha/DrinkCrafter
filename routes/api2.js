@@ -79,7 +79,7 @@ router.post("/addUser", async (req, res) => {
   try {
     const userName = req.body.userName;
     const userPsw = req.body.userPsw;
-    const userCollection = req.body.userCollection || "";
+    const userCollection = [];
 
     const userToInsert = {
       name: userName,
@@ -137,6 +137,39 @@ router.get("/logout", async (req, res) => {
       res.status(200).json({ message: "Logout successful" });
     }
   });
+});
+
+router.post("/addToCollection", async (req, res) => {
+  try {
+    const user = req.body.userName;
+    const objectId = req.body.drinkId;
+
+    if (!user || !objectId) {
+      return res.status(400).json({ message: "Invalid request" });
+    }
+
+    await myDB2.addCollection(user, objectId);
+    res.status(200).json({ message: "Drink added to collection successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+router.get("/collectDrinks", async (req, res) => {
+  try {
+    const userName = req.query.userName;
+    console.log("userName:", userName);
+    const result = await myDB2.getDrinks(userName);
+    if (result.status === 200) {
+      res.json(result.recipesCollection);
+    } else {
+      res.status(result.status).json(result.message);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 export default router;

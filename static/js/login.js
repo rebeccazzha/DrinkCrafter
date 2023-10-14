@@ -24,7 +24,6 @@ function LogIn() {
         },
         body: JSON.stringify(userData),
       });
-      console.log(response);
 
       if (response.status === 200) {
         const data = await response.json();

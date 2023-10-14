@@ -1,6 +1,7 @@
 import "dotenv/config";
 
 import { MongoClient } from "mongodb";
+import { ObjectId } from "mongodb";
 
 function MyDB2() {
   const uri2 = process.env.MONGO_URL;
@@ -83,36 +84,37 @@ function MyDB2() {
     }
   };
 
-  // myDB2.insertToken = async (userId, token) => {
-  //   const { client2, db2 } = await connectToMongoDB();
-  //   const tokenCollection = db2.collection("token");
-
-  //   try {
-  //     await tokenCollection.insertOne({ userId, token });
-  //   } finally {
-  //     await client2.close();
-  //   }
-  // };
-
-  // myDB2.getTokenByUserId = async (token) => {
-  //   const { client2, db2 } = await connectToMongoDB();
-  //   const tokenCollection = db2.collection("token");
-
-  //   try {
-  //     const tokenData = await tokenCollection.findOne({ token });
-  //     return tokenData ? tokenData.userId : null;
-  //   } finally {
-  //     await client2.close();
-  //   }
-  // };
-
-  myDB2.deleteToken = async (userId, token) => {
+  myDB2.addCollection = async (user, objectId) => {
     const { client2, db2 } = await connectToMongoDB();
-    const tokenCollection = db2.collection("token");
+    const usersCollection = db2.collection("user");
+    const drinksCollection = db2.collection("recipe");
+
+    const dbObjectId = new ObjectId(objectId);
 
     try {
-      await tokenCollection.deleteOne({ userId, token });
+      if (user && objectId) {
+        const document = await drinksCollection.findOne({ _id: dbObjectId });
+        console.log("document: " + document);
+
+        if (document) {
+          const result = await usersCollection.updateOne(
+            { name: user },
+            { $push: { collection: document } }
+          );
+
+          if (result.modifiedCount > 0) {
+            console.log("Document added to the collection successfully");
+          } else {
+            console.log("No documents matched the query");
+          }
+        } else {
+          console.log("Document not found.");
+        }
+      }
+    } catch (error) {
+      console.error("Error:", error);
     } finally {
+      console.log("DB closing connection");
       await client2.close();
     }
   };
@@ -144,6 +146,33 @@ function MyDB2() {
     } finally {
       console.log("DB closing connection");
       await client2.close();
+    }
+  };
+
+  myDB2.getDrinks = async (userName) => {
+    const { client2, db2 } = await connectToMongoDB();
+    const usersCollection = db2.collection("user");
+
+    try {
+      const userSelect = await usersCollection.findOne({ name: userName });
+
+      if (!userSelect) {
+        return { status: 404, message: "User not found" };
+      }
+      const recipesCollection = userSelect.collection;
+      console.log("recipesCollection: " + recipesCollection);
+      if (!Array.isArray(recipesCollection)) {
+        return { status: 400, message: "Recipes collection is not an array" };
+      }
+
+      console.log("recipesCollection is a array!");
+
+      return { status: 200, recipesCollection };
+    } catch (error) {
+      console.error(error);
+      return { status: 500, message: "Internal Server Error" };
+    } finally {
+      client2.close();
     }
   };
 
