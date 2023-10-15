@@ -28,7 +28,7 @@ Class Link: [Web Development Fall 2023](https://johnguerra.co/classes/webDevelop
 
 5. **Recipe Liked and Collected Lists**  
    Users can like and collect their favorite bartending recipes to the collection list.
-   ![Recipe collection image](https://github.com/rebeccazzha/DrinkCrafter/blob/main/static/img/collect.png)
+   ![Recipe collection image](https://github.com/rebeccazzha/DrinkCrafter/blob/main/static/img/collect-page.png)
 
 7. **Fun Facts Sharing**  
    Users can share interesting and entertaining facts about different liquors.
