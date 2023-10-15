@@ -50,6 +50,7 @@ function Collect() {
                   <span class="tag" style="background-color: ${backgroundColor}">${drinkName}</span>
                   <p class="card-text">Ingredients: ${drink.description}</p>
                   <a href="${detailPageLink}" class="btn btn-explore">Explore</a>
+                  <button class="btn btn-danger remove-drink" data-drink-id="${drink._id}">Remove</button>
               </div>
           </div>
       </div>`;
@@ -58,7 +59,40 @@ function Collect() {
   me.renderDrinks = function (drinks) {
     const drinksContainer = document.querySelector("#drinks-container");
     drinksContainer.innerHTML = drinks.map(renderDrink).join("\n");
+
+    drinksContainer.querySelectorAll('.remove-drink').forEach(button => {
+      button.addEventListener('click', async function() {
+          const drinkId = this.dataset.drinkId;
+          await me.removeDrink(drinkId);
+          me.reloadDrinks();
+      });
+    });
   };
+
+  me.removeDrink = async function(drinkId) {
+    try {
+      const userName = checkUserLoginStatus();
+      if (!userName) {
+        console.error("User not logged in");
+        return;
+      }
+  
+      const response = await fetch(`/api2/removeFromCollection?userName=${userName}&drinkId=${drinkId}`, {
+        method: "DELETE",
+      });
+  
+      if (response.status !== 200) {
+        console.error("Error removing drink");
+        return;
+      }
+  
+    } catch (error) {
+      console.error("Error while removing the drink:", error);
+    }
+  };
+  
+  
+
 
   document.querySelectorAll(".dropdown-item").forEach((item) => {
     item.addEventListener("click", function () {

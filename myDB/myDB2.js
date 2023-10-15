@@ -119,6 +119,27 @@ function MyDB2() {
     }
   };
 
+  myDB2.removeFromCollection = async (userName, drinkId) => {
+    const { client2, db2 } = await connectToMongoDB();
+    const usersCollection = db2.collection("user");
+    const dbObjectId = new ObjectId(drinkId);
+    
+    try {
+      const result = await usersCollection.updateOne(
+        { name: userName },
+        { $pull: { collection: { _id: dbObjectId } } }
+      );
+      
+      if (result.modifiedCount === 0) {
+        throw new Error("Failed to remove drink from collection");
+      }
+    } finally {
+      await client2.close();
+    }
+  };
+  
+
+
   myDB2.voteFact = async (factId, voteType) => {
     const { client2, db2 } = await connectToMongoDB();
     const factsCollection = db2.collection("funFacts");

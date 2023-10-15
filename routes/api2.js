@@ -171,4 +171,25 @@ router.get("/collectDrinks", async (req, res) => {
   }
 });
 
+router.delete("/removeFromCollection", async (req, res) => {
+  console.log("reached remove from collection");
+  try {
+    const user = req.query.userName;
+    const objectId = req.query.drinkId;
+
+    if (!user || !objectId) {
+      return res.status(400).json({ message: "Invalid request" });
+    }
+
+    await myDB2.removeFromCollection(user, objectId);
+    res.status(200).json({ message: "Drink removed from collection successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+
+
+
 export default router;
