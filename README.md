@@ -6,7 +6,6 @@
 
 **Xiangyue Zhang**  
 [Xiangyue Zhang's personal website]((https://rebeccazzha.github.io/)
-
 **Yahui Zhang**  
 Class Link: [Web Development Fall 2023](https://johnguerra.co/classes/webDevelopment_fall_2023/)
 
