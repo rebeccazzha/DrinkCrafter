@@ -2,13 +2,26 @@
 
 "DrinkCrafter" is a web project for drink enthusiasts. It's a user-friendly platform to connect, share, and discover unique cocktail recipes and liquor facts with like-minded people.
 
+**DrinCrafter Website Link**
+[DrinkCrafter Website Link](https://drinkcrafter.onrender.com/index.html)
+
 ## Author
 
 **Xiangyue Zhang**  
-[Xiangyue Zhang's personal website]((https://rebeccazzha.github.io/)
+[Xiangyue Zhang's personal website](https://rebeccazzha.github.io/)
 
 **Yahui Zhang**  
+[Yahui Zhang's personal website](https://rebeccayhz.github.io/Welcome-to-know-me/)
+
 Class Link: [Web Development Fall 2023](https://johnguerra.co/classes/webDevelopment_fall_2023/)
+
+## Design Documents
+
+**Proposal**
+[Proposal](https://docs.google.com/document/d/1LTtDCq6bXFhhtJq5iGi59TH2BMtHjk3XUahFVWLy_bA/edit?usp=sharing)
+
+**Presentation slides**
+[Presentation slides](https://www.canva.com/design/DAFxBjSEo80/lzGF-IenC0Nkyz17VDeC2w/edit?utm_content=DAFxBjSEo80&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 ## Project Functionalities
 
