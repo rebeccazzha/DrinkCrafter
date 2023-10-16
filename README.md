@@ -4,7 +4,7 @@
 
 ## Author
 
-**Xiangyue Zhang**  
+**Xiangyue Zhang**  [Xiangyue Zhang's personal website]((https://rebeccazzha.github.io/))
 **Yahui Zhang**  
 Class Link: [Web Development Fall 2023](https://johnguerra.co/classes/webDevelopment_fall_2023/)
 
@@ -29,6 +29,10 @@ Class Link: [Web Development Fall 2023](https://johnguerra.co/classes/webDevelop
 5. **Recipe Liked and Collected Lists**  
    Users can like and collect their favorite bartending recipes to the collection list.
    ![Recipe collection image](https://github.com/rebeccazzha/DrinkCrafter/blob/main/static/img/collect-page.png)
+
+6.  **Recipe Detail Page**
+   Each drink has its unique detail page that contains detailed recipe.
+   ![Recipe detail image](https://github.com/rebeccazzha/DrinkCrafter/blob/main/static/img/detailPage.png)
 
 7. **Fun Facts Sharing**  
    Users can share interesting and entertaining facts about different liquors.
