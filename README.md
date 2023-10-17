@@ -1,5 +1,6 @@
 # DrinkCrafter
 
+
 "DrinkCrafter" is a web project for drink enthusiasts. It's a user-friendly platform to connect, share, and discover unique cocktail recipes and liquor facts with like-minded people.
 
 **DrinCrafter Website Link**
